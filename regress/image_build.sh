@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE_NAME=playground:image_build_test
-MAX_SIZE=260
+MAX_SIZE=350
 
 # clean up
 docker rmi --force "$IMAGE_NAME" 2>/dev/null 1>&2
@@ -25,12 +25,14 @@ echo "Check toolchain"
 docker run -i "$IMAGE_NAME" <<EOF
 command -V gcc
 command -V g++
+command -V valgrind
 EOF
 
 echo "Check toolchain versions"
 docker run -i "$IMAGE_NAME" <<EOF
 gcc --version   | head -n 1
 g++ --version   | head -n 1
+valgrind --version   | head -n 1
 EOF
 
 
