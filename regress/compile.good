@@ -1,0 +1,8 @@
+Compiling and testing C code
+Sizes
+=====
+char:   1
+short:  2
+int:    4
+long:   8
+void*:  8
