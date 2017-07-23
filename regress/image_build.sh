@@ -1,25 +1,38 @@
 #!/bin/bash
 
-IMAGE_NAME=playground:test
-MAX_SIZE=150
+IMAGE_NAME=playground:image_build_test
+MAX_SIZE=260
 
-docker rmi --force  playground:test 2>/dev/null 1>&2
+# clean up
+docker rmi --force "$IMAGE_NAME" 2>/dev/null 1>&2
 
 echo "Build the playground image from a directory."
-( set -x ; docker build --no-cache -q -t "$IMAGE_NAME" . ) > /dev/null
+docker build --no-cache -q -t "$IMAGE_NAME" . > /dev/null 2>&1
 
 echo -n "Does the image exist? "
-docker images --format="{{.Repository}} found" "$IMAGE_NAME"
+docker images --format="Yes." "$IMAGE_NAME"
 
+echo -n "Is the image too big? "
 SIZE=$(docker images --format="{{.Size}}" "$IMAGE_NAME" | sed 's/\([0-9]\+\).*/\1/')
 if [ "$SIZE" -gt "$MAX_SIZE" ] 
 then
-    echo "Image's size is too large: $SIZE"
+    echo "Yes it is too big: $SIZE"
 else
-    echo "Image's size is ok."
+    echo "No, it is OK."
 fi
 
+echo "Check toolchain"
+docker run -i "$IMAGE_NAME" <<EOF
+command -V gcc
+command -V g++
+EOF
+
+echo "Check toolchain versions"
+docker run -i "$IMAGE_NAME" <<EOF
+gcc --version   | head -n 1
+g++ --version   | head -n 1
+EOF
 
 
-
-docker rmi --force  playground:test 2>/dev/null 1>&2 
+# clean up
+docker rmi --force "$IMAGE_NAME" 2>/dev/null 1>&2

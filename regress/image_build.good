@@ -1,0 +1,9 @@
+Build the playground image from a directory.
+Does the image exist? Yes.
+Is the image too big? No, it is OK.
+Check toolchain
+gcc is /usr/bin/gcc
+g++ is /usr/bin/g++
+Check toolchain versions
+gcc (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609
+g++ (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609
