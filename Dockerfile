@@ -40,6 +40,8 @@ RUN    apt-get -y update  \
             # C and C++ compilers
             gcc=4:5.3.1-1ubuntu1 \
             g++=4:5.3.1-1ubuntu1 \
+            # Debuging & profiling tools
+            valgrind=1:3.11.0-1ubuntu4.2 \
     # finally, clean up to reduce images's size
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/

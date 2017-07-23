@@ -11,8 +11,17 @@ CVOL="/regress"
 
 echo "Compiling and testing C code"
 docker run -i -v "$HVOL:$CVOL:ro" "$IMAGE_NAME" <<EOF
+echo "Sizes"
+echo "====="
+
 gcc -std=c99 -pedantic -Wall -Werror $CVOL/sizes.c -o sizes
 ./sizes
+
+
+echo "Memory"
+echo "======"
+
+# disable uninitialized and unused variable warnings for testing purposes
+gcc -std=c99 -pedantic -Wall -Werror -Wno-uninitialized -Wno-unused-variable $CVOL/memory.c -o memory
+valgrind --leak-check=full -q ./memory 2>&1 | grep 'Invalid\|lost' | sed 's/.*==[0-9]\+== \(.*\)/\1/'
 EOF
-
-
