@@ -28,3 +28,6 @@ Memory
 Invalid write of size 1
 Invalid free() / delete / delete[] / realloc()
 4 bytes in 1 blocks are definitely lost in loss record 1 of 1
+Threads
+=======
+Sum = 55 (ok)

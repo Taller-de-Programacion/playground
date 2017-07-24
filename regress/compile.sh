@@ -50,4 +50,10 @@ echo "======"
 g++ -std=c++11 -pedantic -Wall -Werror -Wno-uninitialized -Wno-unused-variable $CVOL/memory.c -o memory
 valgrind --leak-check=full -q ./memory 2>&1 | grep 'Invalid\|lost' | sed 's/.*==[0-9]\+== \(.*\)/\1/'
 
+echo "Threads"
+echo "======="
+
+g++ -std=c++11 -pedantic -Wall -Werror -pthread $CVOL/threads.cpp -o threads
+./threads
+
 EOF
