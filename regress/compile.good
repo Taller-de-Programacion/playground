@@ -14,3 +14,17 @@ Invalid free() / delete / delete[] / realloc()
 getaddrinfo
 ===========
 Return code: 0
+
+Compiling and testing C++ code
+Sizes
+=====
+char:   1
+short:  2
+int:    4
+long:   8
+void*:  8
+Memory
+======
+Invalid write of size 1
+Invalid free() / delete / delete[] / realloc()
+4 bytes in 1 blocks are definitely lost in loss record 1 of 1
