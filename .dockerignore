@@ -1,0 +1,9 @@
+# Don't send anything to the docker daemon
+*
+
+# Don't send neither the Dockerfile nor the dockerignore
+# It's ok, those two will be sent to the daemon anyway but
+# they will not be accesible by ADD or COPY commands
+Dockerfile
+.dockerignore
+
