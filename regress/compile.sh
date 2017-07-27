@@ -54,4 +54,10 @@ echo "======="
 g++ -std=c++11 -pedantic -Wall -Werror -pthread $CVOL/threads.cpp -o threads
 ./threads
 
+echo "Algorithms and templates"
+echo "========================"
+
+g++ -std=c++11 -pedantic -Wall -Werror $CVOL/algorithm.cpp -o algorithm
+./algorithm
+
 EOF
