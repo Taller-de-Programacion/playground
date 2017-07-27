@@ -2,15 +2,13 @@
 
 # Use a shared 'test' container. If it has already created (cached)
 # we will use it directly avoing us to recreate the container again.
-IMAGE_NAME=playground:test
-docker build -q -t "$IMAGE_NAME" . > /dev/null 2>&1
+docker-compose -f docker-compose-files/for_test.yml  build  > /dev/null 2>&1
 
-# Host (local) and container respective sides of the mounted volume
-HVOL="$(pwd)/regress"
+# Path to the sources from the point of view of the container
 CVOL="/regress"
 
 echo "Compiling and testing C code"
-docker run -i -v "$HVOL:$CVOL:ro" "$IMAGE_NAME" <<EOF
+docker-compose -f docker-compose-files/for_test.yml  run  test <<EOF
 echo "Sizes"
 echo "====="
 
@@ -35,7 +33,7 @@ EOF
 
 echo
 echo "Compiling and testing C++ code"
-docker run -i -v "$HVOL:$CVOL:ro" "$IMAGE_NAME" <<EOF
+docker-compose -f docker-compose-files/for_test.yml  run  test <<EOF
 echo "Sizes"
 echo "====="
 
