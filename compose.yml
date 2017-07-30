@@ -6,4 +6,14 @@ services:
             context: .
         volumes: 
             - ./regress:/regress:ro
-        
+ 
+        # Add swapaccount=1 in the kernel boot command line to limit
+        # the swap space.
+        # If you don't or you can't DO NOT set a memory limit. 
+        # If you do, when an application consumes more memory than this 
+        # limit it will start to swap if because there is not swap limit 
+        # it will use all the swap space available in the host and this 
+        # may hurt the performance
+        mem_limit:          512m
+        memswap_limit:      512m # swap == (memswap_limit - mem_limit) == 0m
+

@@ -1,0 +1,7 @@
+Testing the limits for compile service
+Memory
+======
+Allocating 500 pages (524288000 megabytes)...
+Allocation successful
+Allocating 700 pages (734003200 megabytes)...
+/bin/bash: line 6:    13 Killed                  ./memory 700
