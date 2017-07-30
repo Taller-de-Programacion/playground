@@ -1,8 +1,0 @@
-version: "2"
-services:
-    test:
-        image: playground:test
-        build:
-            context: .
-        volumes: 
-            - ../regress:/regress:ro

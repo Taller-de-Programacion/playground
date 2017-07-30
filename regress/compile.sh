@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Use a shared 'test' container. If it has already created (cached)
-# we will use it directly avoing us to recreate the container again.
-docker-compose -f docker-compose-files/for_test.yml  build  > /dev/null 2>&1
+# Build the image. If it is already created (cached), using it.
+docker-compose -f compose.yml  build  > /dev/null 2>&1
 
 # Path to the sources from the point of view of the container
 CVOL="/regress"
 
 echo "Compiling and testing C code"
-docker-compose -f docker-compose-files/for_test.yml  run  test <<EOF
+docker-compose -f compose.yml run compile <<EOF
 echo "Sizes"
 echo "====="
 
@@ -33,7 +32,7 @@ EOF
 
 echo
 echo "Compiling and testing C++ code"
-docker-compose -f docker-compose-files/for_test.yml  run  test <<EOF
+docker-compose -f compose.yml run compile <<EOF
 echo "Sizes"
 echo "====="
 

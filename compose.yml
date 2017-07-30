@@ -1,0 +1,9 @@
+version: "2"
+services:
+    compile:
+        image: playground
+        build:
+            context: .
+        volumes: 
+            - ./regress:/regress:ro
+        
