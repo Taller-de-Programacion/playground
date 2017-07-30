@@ -14,11 +14,17 @@ docker images --format="Yes." "$IMAGE_NAME"
 
 echo -n "Is the image too big? "
 SIZE=$(docker images --format="{{.Size}}" "$IMAGE_NAME" | sed 's/\([0-9]\+\).*/\1/')
-if [ "$SIZE" -gt "$MAX_SIZE" ] 
+if [ -z "$SIZE" ]
+then
+    echo "Unknow: the size of the image is undefined."
+
+elif [ "$SIZE" -gt "$MAX_SIZE" ] 
 then
     echo "Yes it is too big: $SIZE"
+
 else
     echo "No, it is OK."
+
 fi
 
 echo "Check toolchain"
