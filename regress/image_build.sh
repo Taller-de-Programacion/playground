@@ -22,14 +22,14 @@ else
 fi
 
 echo "Check toolchain"
-docker run -i "$IMAGE_NAME" <<EOF
+docker run --rm -i "$IMAGE_NAME" <<EOF
 command -V gcc
 command -V g++
 command -V valgrind
 EOF
 
 echo "Check toolchain versions"
-docker run -i "$IMAGE_NAME" <<EOF
+docker run --rm -i "$IMAGE_NAME" <<EOF
 gcc --version   | head -n 1
 g++ --version   | head -n 1
 valgrind --version   | head -n 1

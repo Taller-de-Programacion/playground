@@ -7,7 +7,7 @@ docker-compose -f compose.yml  build  > /dev/null 2>&1
 CVOL="/regress"
 
 echo "Compiling and testing C code"
-docker-compose -f compose.yml run compile <<EOF
+docker-compose -f compose.yml run --rm compile <<EOF
 echo "Sizes"
 echo "====="
 
@@ -32,7 +32,7 @@ EOF
 
 echo
 echo "Compiling and testing C++ code"
-docker-compose -f compose.yml run compile <<EOF
+docker-compose -f compose.yml run --rm compile <<EOF
 echo "Sizes"
 echo "====="
 
