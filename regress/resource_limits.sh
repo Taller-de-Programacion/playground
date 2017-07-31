@@ -14,5 +14,11 @@ gcc -std=c99 -pedantic -Wall -Werror $CVOL/memory.c -o memory
 ./memory 500    # allocate 500 MB, it should be ok
 ./memory 700    # allocate 700 MB, it should be *not* ok
 
+echo "CPU"
+echo "==="
+
+gcc -std=c99 -pedantic -Wall -Werror $CVOL/cpu.c -lpthread -lm -o cpu
+./cpu 8         # 8 threads (plus main thread)
+
 EOF
 

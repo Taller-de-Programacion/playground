@@ -1,4 +1,4 @@
-version: "2"
+version: "2.2"
 services:
     compile:
         image: playground
@@ -17,3 +17,5 @@ services:
         mem_limit:          512m
         memswap_limit:      512m # swap == (memswap_limit - mem_limit) == 0m
 
+        # CPU usage limit: up to 1 CPU
+        cpus: 1.0
